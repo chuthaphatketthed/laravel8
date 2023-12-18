@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\MyProfileController;
 use App\Http\Controllers\QuizController;
+use App\Http\Controllers\Covid19Controller;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -87,3 +88,6 @@ Route::get("/coronavirus", [MyProfileController::class, "coronavirus"]);
 
 Route::get("study-question", [QuizController::class, "question"])->name("study-question");
 Route::post("study-match", [QuizController::class, "match"])->name("study-match");
+
+
+Route::get('/covid19', [ Covid19Controller::class,"index" ]);

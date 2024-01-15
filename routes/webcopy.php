@@ -7,7 +7,6 @@ use App\Http\Controllers\QuizController;
 use App\Http\Controllers\Covid19Controller;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StaffController;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,9 +17,7 @@ use App\Http\Controllers\StaffController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get("/", function () {
-    return view("welcome");
-});
+
 
 
 Route::get("/teacher", function () {
@@ -108,9 +105,3 @@ Route::delete("/product/{id}", [ProductController::class, "destroy"])->name('pro
 Route::resource('/product', ProductController::class );
 
  Route::resource('/staff', StaffController::class );
-
- Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-
-require __DIR__ . '/auth.php';

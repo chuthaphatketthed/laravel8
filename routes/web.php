@@ -7,6 +7,7 @@ use App\Http\Controllers\QuizController;
 use App\Http\Controllers\Covid19Controller;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StaffController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -116,3 +117,4 @@ Route::resource('/product', ProductController::class );
 require __DIR__ . '/auth.php';
 
 Route::resource('post', 'PostController');
+Route::resource('post', PostController::class);

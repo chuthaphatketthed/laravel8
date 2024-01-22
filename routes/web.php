@@ -114,3 +114,5 @@ Route::resource('/product', ProductController::class );
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__ . '/auth.php';
+
+Route::resource('post', 'PostController');

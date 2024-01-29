@@ -8,9 +8,12 @@ use App\Http\Controllers\Covid19Controller;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\ProfileController; 
-use App\Http\Controllers\UserController;  
-use App\Http\Controllers\VehicleController;  
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\VehicleController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\QuotationController;
+use App\Http\Controllers\QuotationDetailController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,6 +24,7 @@ use App\Http\Controllers\VehicleController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::get("/", function () {
     return view("welcome");
 });
@@ -108,11 +112,11 @@ Route::get("/product/{id}/edit", [ProductController::class, "edit"])->name('prod
 Route::patch("/product/{id}", [ProductController::class, "update"])->name('product.update');
 Route::delete("/product/{id}", [ProductController::class, "destroy"])->name('product.destroy');
 
-Route::resource('/product', ProductController::class );
+Route::resource('/product', ProductController::class);
 
- Route::resource('/staff', StaffController::class );
+Route::resource('/staff', StaffController::class);
 
- Route::get('/dashboard', function () {
+Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
@@ -124,6 +128,16 @@ Route::resource('post', PostController::class);
 // Route::resource('user', 'UserController');
 // Route::resource('vehicle', 'VehicleController');
 
-Route::resource('profile', ProfileController::class);
-Route::resource('user', UserController::class);
-Route::resource('vehicle', VehicleController::class);
+// Route::resource('profile', ProfileController::class);
+// Route::resource('user', UserController::class);
+// Route::resource('vehicle', VehicleController::class);
+// Route::resource('customer', 'CustomerController');
+// Route::resource('quotation', 'QuotationController');
+// Route::resource('quotation-detail', 'QuotationDetailController');
+
+Route::middleware(['auth'])->group(function () {
+    Route::resource('customer', CustomerController::class);
+    Route::get('quotation/{id}/pdf', [QuotationController::class, 'pdf']);
+    Route::resource('quotation', QuotationController::class);
+    Route::resource('quotation-detail', QuotationDetailController::class);
+});
